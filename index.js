@@ -24,6 +24,14 @@ app.post('/search', async (req, res) => {
     })
     let data = await result.text()
     let userinfo = await JSON.parse(data)
+    if(userinfo.status.message == "Data not found - summoner not found") {
+        res.send(JSON.stringify({
+            profile: {
+                result: false
+            }
+        }))
+        return(false)
+    }
 
     const searchById = await fetch(`https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${userinfo.id}?api_key=${riotApi}`, {
         method: "GET",
@@ -39,6 +47,7 @@ app.post('/search', async (req, res) => {
             }
         }
     }
+    
 
 
     res.send(JSON.stringify({
@@ -50,6 +59,7 @@ app.post('/search', async (req, res) => {
             tier: `${userWL[0].tier} ${userWL[0].rank} ${userWL[0].leaguePoints}`,
             win: userWL[0].wins,
             lose: userWL[0].losses,
+            result: true,
         }
     }))
 })

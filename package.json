@@ -2,7 +2,7 @@
   "name": "fhfwjswjr.gg",
   "version": "1.0.0",
   "description": "롤 전적검색 사이트입니다!",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/whguswo/fhfwjswjr.gg#readme",
   "dependencies": {
+    "depd": "^2.0.0",
     "express": "^4.17.2",
     "node-fetch": "^2.6.7",
     "nodemon": "^2.0.15"

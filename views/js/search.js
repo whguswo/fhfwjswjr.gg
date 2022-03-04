@@ -18,13 +18,20 @@ const getParameter = (name) => {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 const displayInfo = (userinfo) => {
-    profileIcon.src = `https://ddragon.leagueoflegends.com/cdn/12.2.1/img/profileicon/${userinfo.profile.icon}.png`
-    nickname.innerText = userinfo.profile.username
-    if (userinfo.profile.type.indexOf('SOLO') != -1) {
-        queueType.innerText = `솔로랭크 : ${userinfo.profile.tier}`
+    console.log(userinfo.profile.result)
+    if(userinfo.profile.result) {
+        profileIcon.src = `https://ddragon.leagueoflegends.com/cdn/12.2.1/img/profileicon/${userinfo.profile.icon}.png`
+        nickname.innerText = userinfo.profile.username
+        if (userinfo.profile.type.indexOf('SOLO') != -1) {
+            queueType.innerText = `솔로랭크 : ${userinfo.profile.tier}`
+        }
+        win.innerText = userinfo.profile.win + '승'
+        lose.innerText = userinfo.profile.lose + '패'
     }
-    win.innerText = userinfo.profile.win + '승'
-    lose.innerText = userinfo.profile.lose + '패'
+    else {
+        nickname.innerText = "존재하지 않는 소환사명입니다."
+    }
+    
 }
 
 window.addEventListener('load', async (e) => {
